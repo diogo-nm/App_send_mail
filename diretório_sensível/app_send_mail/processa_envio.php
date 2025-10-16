@@ -40,33 +40,25 @@
 		header('Location: index.php');
 	} 
 
-	//Create an instance; passing `true` enables exceptions
 	$mail = new PHPMailer(true);
 
 	try {
-	    //Server settings
-	    $mail->SMTPDebug = false;                      //Enable verbose debug output
-	    $mail->isSMTP();                                            //Send using SMTP
-	    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-	    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-	    $mail->Username   = 'testeprojetos2210@gmail.com';                     //SMTP username
-	    $mail->Password   = 'skvcavkpfxxknzka';                               //SMTP password
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-	    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+	    //Configuração do Server
+	    $mail->SMTPDebug = false;                      
+	    $mail->isSMTP();                                           
+	    $mail->Host       = 'smtp.gmail.com';                     
+	    $mail->SMTPAuth   = true;                                   
+	    $mail->Username   = '<seuEmail@gmail.com>';                  //Email utilizado para realizar conexão com o SMTP
+	    $mail->Password   = 'xxxxxxxxxxxxxxxx';                      //Senha gerada em "Senhas de app" SMTP
+	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          //Enable implicit TLS encryption
+	    $mail->Port       = 587;                                     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-	    //Recipients
-	    $mail->setFrom('testeprojetos2210@gmail.com', 'Web Completo Remetente');
-	    $mail->addAddress($mensagem->__get('para'));     //Add a recipient
-	    //$mail->addReplyTo('info@example.com', 'Information');
-	    //$mail->addCC('cc@example.com');
-	    //$mail->addBCC('bcc@example.com');
+	    //Destinatário/Remetente
+	    $mail->setFrom('<seuEmail@gmail.com>', '<seuNome>');         //Email do remetente
+	    $mail->addAddress($mensagem->__get('para'));                 //Email do destinatário
 
-	    //Attachments
-	    //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-	    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-	    //Content
-	    $mail->isHTML(true);                                  //Set email format to HTML
+	    //Conteúdo
+	    $mail->isHTML(true);                                         
 	    $mail->Subject = $mensagem->__get('assunto');
 	    $mail->Body    = $mensagem->__get('mensagem');
 	    $mail->AltBody = 'É necessário utilizar um client que suporte HTML para ter acesso total ao conteúdo dessa mensagem!';
@@ -135,3 +127,4 @@
 	</body>
 
 </html>>
+
